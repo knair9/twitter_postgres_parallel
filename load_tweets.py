@@ -328,7 +328,6 @@ def insert_tweet(connection,tweet):
             'type': medium.get('type'),
         })
         
-    connection.commit()
 
 ################################################################################
 # main functions
@@ -349,6 +348,7 @@ if __name__ == '__main__':
         'application_name': 'load_tweets.py',
         })
     connection = engine.connect()
+    connection = connection.execution_options(isolation_level="AUTOCOMMIT")
 
     # loop through the input file
     # NOTE:
